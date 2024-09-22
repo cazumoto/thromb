@@ -13,5 +13,5 @@ RUN ./gradlew build
 # Esponi la porta 8080
 EXPOSE 8080
 
-# Esegui l'applicazione Java
-CMD ["java", "-jar", "app/build/libs/thromb-1.0-SNAPSHOT.jar"]
+# Esegui l'applicazione Java utilizzando il file app.jar generato dalla build
+CMD ["java", "-jar", "app/build/libs/app.jar"]
