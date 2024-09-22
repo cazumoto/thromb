@@ -19,3 +19,12 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# Evita la cartella build e i file generati
+/build/
+.gradle/
+.idea/
+*.log
+*.pdf
+*.webp
+.DS_Store
