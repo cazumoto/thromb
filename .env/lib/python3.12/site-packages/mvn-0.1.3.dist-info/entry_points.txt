@@ -1,0 +1,2 @@
+[console_scripts]
+mvn = mvn.cli.mvn:main

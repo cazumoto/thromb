@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DAPTGUARD-AI: Antithrombotic Therapy Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header with Logo -->
+    <header>
+        <img src="logo.webp" alt="Logo" class="logo">
+        <h1>DAPTGUARD-AI: Antithrombotic Therapy Tool</h1>
+    </header>
+
+    <!-- Patient Registration -->
+    <div id="patient-registration" class="card">
+        <h2>Register New Patient</h2>
+        <form id="registration-form">
+            <label>Patient ID:</label>
+            <input type="text" id="patient_id" required>
+            <button type="button" onclick="registerPatient()">Register Patient</button>
+        </form>
+    </div>
+
+    <!-- Patient Selection -->
+    <div id="patient-selection" class="card" style="display: none;">
+        <h2>Select Patient</h2>
+        <select id="patient_list" onchange="loadPatientData()">
+            <option value="">--Select Patient--</option>
+        </select>
+        <button type="button" onclick="deletePatient()">Delete Patient</button>
+    </div>
+
+    <!-- Risk Assessment Form -->
+    <div id="risk-assessment" class="card" style="display: none;">
+        <h2>Risk Assessment</h2>
+        <form id="patient-form">
+            <h3>Bleeding Risk Assessment</h3>
+            <p>Select if the patient has one or more of the following criteria:</p>
+            <!-- Bleeding Risk Factors -->
+            <label><input type="checkbox" name="bleeding_risk" value="Advanced age"> Advanced age</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Kidney, liver, or CNS disease"> Kidney, liver, or CNS disease</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Active cancer"> Active cancer</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Anemia, low platelet count, hemorrhagic diathesis"> Anemia, low platelet count, hemorrhagic diathesis</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Prior bleeding"> Prior bleeding</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Use of OAC or NSAIDs"> Use of oral anticoagulants (OAC) or NSAIDs</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Drug-drug interactions"> Drug-drug interactions</label>
+            <label><input type="checkbox" name="bleeding_risk" value="Surgery, trauma, risk of falls"> Surgery, trauma, risk of falls</label>
+
+            <h3>Ischemic Risk Assessment</h3>
+            <p>Select if the patient has complex coronary artery disease and one or more of the following risk enhancers:</p>
+            <!-- Ischemic Risk Factors -->
+            <label><input type="checkbox" name="ischemic_risk" value="Diabetes mellitus requiring medication"> Diabetes mellitus requiring medication</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Recurrent myocardial infarction"> Recurrent myocardial infarction</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Multivessel coronary artery disease"> Multivessel coronary artery disease</label>
+            <label><input type="checkbox" name="ischemic_risk" value="CAD plus peripheral artery disease"> CAD plus peripheral artery disease</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Premature or accelerated CAD"> Premature or accelerated CAD</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Inflammatory disease"> Inflammatory disease</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Chronic kidney disease (eGFR 15-59 mL/min/1.73 m²)"> Chronic kidney disease (eGFR 15-59 mL/min/1.73 m²)</label>
+            <label><input type="checkbox" name="ischemic_risk" value="≥3 stents implanted"> ≥3 stents implanted</label>
+            <label><input type="checkbox" name="ischemic_risk" value="≥3 lesions treated"> ≥3 lesions treated</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Total stent length >60 mm"> Total stent length >60 mm</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Complex PCI"> Complex PCI (left main, 2-stent bifurcation, chronic total occlusion, patent vessel)</label>
+            <label><input type="checkbox" name="ischemic_risk" value="Stent thrombosis while on DAPT"> Stent thrombosis while on DAPT</label>
+
+            <button type="button" onclick="assessRisk()">Calculate Recommendation</button>
+        </form>
+    </div>
+
+    <!-- Follow-up Events -->
+    <div id="follow-up" class="card" style="display: none;">
+        <h2>Follow-up Events</h2>
+        <p>Select any new clinical events that have occurred since the last assessment:</p>
+        <label><input type="checkbox" id="new_bleeding_event"> New Bleeding Event</label>
+        <label><input type="checkbox" id="new_ischemic_event"> New Ischemic Event</label>
+        <label><input type="checkbox" id="no_new_event"> No New Events</label>
+        <button type="button" onclick="updateFollowUp()">Update Follow-up</button>
+    </div>
+
+    <!-- Results Display -->
+    <div class="results card" id="results" style="display: none;">
+        <h2>Results:</h2>
+        <p id="bleeding_risk_result"></p>
+        <p id="ischemic_risk_result"></p>
+        <h3>Therapy Recommendation:</h3>
+        <div id="therapy_recommendation"></div>
+
+        <!-- Probability Graphs -->
+        <h3>Probability Graphs:</h3>
+        <canvas id="probabilityChart" width="400" height="200"></canvas>
+
+        <p class="disclaimer"><strong>Disclaimer:</strong> This recommendation is for educational purposes only and should not replace professional medical advice.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
