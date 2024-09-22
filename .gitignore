@@ -28,3 +28,6 @@ gradle-app.setting
 *.pdf
 *.webp
 .DS_Store
+
+# Ignore Gradle build output directory
+build

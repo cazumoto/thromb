@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.example.Main'  // Sostituisci con la tua classe principale
+        )
+    }
+    archiveBaseName = 'SAPT'  // Questo specifica che il nome del file jar sarà SAPT.jar
+}
+
+application {
+    mainClass = 'com.example.Main'  // Specifica la classe Main da cui partire
+}
