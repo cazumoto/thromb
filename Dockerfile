@@ -2,13 +2,16 @@
 FROM openjdk:11-jdk-slim
 
 # Imposta la directory di lavoro all'interno del container
-WORKDIR /SAPT
+WORKDIR /app
 
-# Copia tutti i file del progetto nella directory di lavoro del container
-COPY . /SAPT
+# Copia i file del progetto nel container
+COPY . .
 
 # Esegui la build del progetto Java usando Gradle
 RUN ./gradlew build
 
-# Comando per eseguire il file .jar dell'app
-CMD ["java", "-jar", "app/build/libs/SAPT-1.0-SNAPSHOT.jar"]
+# Esponi la porta 8080
+EXPOSE 8080
+
+# Esegui l'applicazione Java
+CMD ["java", "-jar", "app/build/libs/thromb-1.0-SNAPSHOT.jar"]
